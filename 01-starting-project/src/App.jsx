@@ -1,41 +1,12 @@
-import reactImg from './assets/react-core-concepts.png';
-import componentImg from './assets/components.png';
 import {CORE_CONCEPTS} from "./data";
-
-
-const reactDescriptions=['fundamental','crucial','core'];
-
-function  genRandomInt(max){
-    return Math.floor(Math.random() * (max+1));
-}
-
-
-function CorConcept(props){
-   return(
-       <li>
-           <img src={props.image} alt="images"/>
-           <h3>{props.title}</h3>
-           <p>{props.description}</p>
-
-       </li>
-   );
-}
-
-function Header() {
-    const description =reactDescriptions[genRandomInt(2)];
-    return (
-        <header>
-        <img src={reactImg} alt="Stylized atom"/>
-        <h1>React Essentials</h1>
-        <p>
-            {description} React concepts you will need for almost any app you are
-            going to build!
-        </p>
-       </header>
-    );
-}
+import Header from "./components/header/Header";
+import CorConcept from "./components/CorConcept";
+import TabButton from "./components/TabButton";
 
 function App(){
+    function handelselect(slectedButton){
+       console.log(slectedButton);
+    }
     return (
         <div>
         <Header />
@@ -60,6 +31,16 @@ function App(){
                             image={CORE_CONCEPTS[3].image}
                         />
                     </ul>
+                </section>
+                <section id ="examples">
+                    <h2>Examples</h2>
+                    <menu>
+                     <TabButton onSelect={() =>handelselect('components')} lable='Components'/>
+                     <TabButton onSelect={() =>handelselect('jsx')} lable='Jsx'/>
+                     <TabButton onSelect={() =>handelselect('props')} lable='Props'/>
+                     <TabButton onSelect={() =>handelselect('state')} lable='State'/>
+                    </menu>
+                    Dynamic Content
                 </section>
             </main>
         </div>
